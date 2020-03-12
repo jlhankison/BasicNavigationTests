@@ -7,6 +7,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.opera.OperaDriver;
+import org.openqa.selenium.safari.SafariDriver;
 
 public class BrowserFactory {
 
@@ -20,6 +21,10 @@ public class BrowserFactory {
                 WebDriverManager.firefoxdriver().setup();
                 return new FirefoxDriver();
             case ("edge"):
+
+                if (System.getProperty("os.name").equalsIgnoreCase("mac")){
+                    return null;
+                }
                 WebDriverManager.edgedriver().setup();
                 return new EdgeDriver();
             case ("ie"):
@@ -27,8 +32,12 @@ public class BrowserFactory {
                 return new EdgeDriver();
             case ("opera"):
                 WebDriverManager.operadriver().setup();
-                System.out.println("blabla");
                 return new OperaDriver();
+            case ("safari"):
+                if (System.getProperty("os.name").equalsIgnoreCase("win")){
+                return null;
+                }
+                return new SafariDriver();
             default:
                 System.out.println("input does not match any browser type, we created a chrome driver as default");
                 WebDriverManager.chromedriver().setup();
