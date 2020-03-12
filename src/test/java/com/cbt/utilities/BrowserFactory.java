@@ -27,11 +27,14 @@ public class BrowserFactory {
                 return new EdgeDriver();
             case ("opera"):
                 WebDriverManager.operadriver().setup();
+                System.out.println("blabla");
                 return new OperaDriver();
             default:
                 System.out.println("input does not match any browser type, we created a chrome driver as default");
                 WebDriverManager.chromedriver().setup();
                 return new ChromeDriver();
+
+
 
         }
     }
